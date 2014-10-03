@@ -27,6 +27,7 @@ provide high level interfaces to various devices.
 Summary:	libavc1394 header files
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libraw1394-devel
 
 %description devel
 libavc1394 header files.
@@ -50,6 +51,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -70,8 +73,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libavc1394.so
 %attr(755,root,root) %{_libdir}/librom1394.so
-%{_libdir}/libavc1394.la
-%{_libdir}/librom1394.la
 %{_includedir}/libavc1394
 %{_pkgconfigdir}/libavc1394.pc
 
